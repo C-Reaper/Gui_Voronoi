@@ -1,193 +1,82 @@
-# Gui_Voronoi
+# Project README
 
+## Overview
+This project is a C-based application that generates Voronoi diagrams in various environments. It includes implementations for Linux, Windows, Wine, and WebAssembly.
 
-## Project Overview
+## Features
+- Generates Voronoi diagrams.
+- Supports multiple build environments: Linux, Windows, Wine, and WebAssembly.
 
-This project implements specialized functionality related to voronoi.
+## Project Structure
+```
+Gui_Voronoi/
+├── build/              # .exe files produced by Main.c
+├── bin/                # .so / .dll produced by *.c in libs (not present)
+├── libs/               # *.c for bin (not present)
+├── lib/                # librarys for my own languages (not present)
+├── code/               # scripts from my custom languages for example .rex, .ll, .omml (not present)
+├── data/               # Datafile for example .txt or dumped files (not present)
+├── assets/             # images and sound files (not present)
+├── src/                # src code
+│   ├── Main.c          # Entry point
+│   └── *.h             # stand alone Header-based C-files, without *.c files that implement it
+├── Makefile.linux      # Linux Build configuration
+├── Makefile.windows    # Windows Build configuration
+├── Makefile.wine       # Wine Build configuration for Linux cross compile for windows
+├── Makefile.web        # Emscripten Build configuration for Webassembly
+└── README.md           # This file
+└── LICENSE             # License file (not present)
+└── .gitignore          # Git ignore rules (not present)
+```
 
-## Core Components
-
-### Main Functionality
-- Implements core algorithms for voronoi
-- Efficient data structures
-- Optimized performance
-- Clean code organization
-
-### Technical Features
-- C/C++ implementation
-- Dynamic memory management
-- Platform-independent design
-- Real-time capable
-
-### Architecture
-- Module separation
-- Clear interface design
-- Proper abstraction layers
-- Extensible design
-
-## Use Cases
-- Production systems
-- Educational purposes
-- Research applications
-- Performance-critical operations
-
-## Performance Characteristics
-- Optimized algorithms
-- Efficient memory usage
-- Scalable architecture
-- Minimal overhead
-
-## Implementation Quality
-- Well-organized code
-- Meaningful naming
-- Proper error handling
-- Memory management
-
-## Build and Deployment
-- Standard C/C++ compilation
-- Makefile-based building
-- Cross-platform support
-- Easy integration
-
-
-## Building the Project
-
-### Prerequisites
-- C/C++ Compiler (GCC, Clang, or MSVC)
+## Prerequisites
+- C/C++ Compiler and Debugger (GCC, Clang)
 - Make utility
 - Standard development tools
 
-### Build Steps
-
-1. Navigate to project directory:
-```bash
-cd Gui_Voronoi
-```
-
+## Build & Run
+### Linux
+1. Navigate to the project directory.
 2. Build the project:
-```bash
-make -f Makefile.(os) all
-```
+    ```sh
+    make -f Makefile.linux all
+    ```
+3. Run the executable:
+    ```sh
+    make -f Makefile.linux exe
+    ```
 
-3. For clean rebuild:
-```bash
-make -f Makefile.(os) clean
-make -f Makefile.(os) all
-```
+### Windows
+1. Navigate to the project directory.
+2. Build the project:
+    ```sh
+    make -f Makefile.windows all
+    ```
+3. Run the executable:
+    ```sh
+    make -f Makefile.windows exe
+    ```
 
-4. If there are ./bin and ./libs directories, build libs with:
-```bash
-make -f Makefile.(os) cleanlib
-make -f Makefile.(os) lib
-```
+### Wine
+1. Navigate to the project directory.
+2. Build the project:
+    ```sh
+    make -f Makefile.wine all
+    ```
+3. Run the executable within Wine:
+    ```sh
+    WINEPREFIX=~/wine64 WINEARCH=win64 wine build/Main.exe
+    ```
 
-### Build Options
-```bash
-make -f Makefile.(os) all         # build output
-make -f Makefile.(os) do        # build + exe output
-make -f Makefile.(os) clean   # Remove build artifacts
-```
+### WebAssembly (Emscripten)
+1. Navigate to the project directory.
+2. Build the project:
+    ```sh
+    make -f Makefile.web all
+    ```
+3. Serve the generated HTML file in a web browser or using `emrun`:
+    ```sh
+    emrun --no_browser --port 8080 build/index.html
+    ```
 
-## Running the Project
-
-Execute the compiled binary:
-
-```bash
-./build/Main(.exe)
-```
-
-Or using make:
-```bash
-make -f Makefile.(os) exe
-```
-
-## Project Organization
-
-```
-Gui_Voronoi/
-├── src/
-│   ├── Main.c          # Entry point
-│   └── *.c             # Implementation files
-├── Makefile            # Build configuration
-└── README.md           # This file
-```
-
-## Technical Details
-
-### Language: C/C++
-- Performance-oriented
-- Direct hardware access where needed
-- Memory efficient
-- Widely portable
-
-### Key Technologies
-- Standard C library
-- System-specific libraries as needed
-- Algorithm optimization
-- Efficient data structures
-
-### Code Quality
-- Clean, readable implementation
-- Proper error handling
-- Resource management
-- Well-documented algorithms
-
-## Development Notes
-
-### Architecture Decisions
-- Modular design for reusability
-- Efficient algorithms for performance
-- Clear separation of concerns
-- Extensible structure
-
-### Performance Optimizations
-- Algorithm efficiency
-- Memory layout optimization
-- Cache-conscious programming
-- Minimal overhead
-
-### Portability
-- Cross-platform compatible
-- Platform-specific optimizations where possible
-- Standard library usage
-- No external dependencies (where feasible)
-
-## Troubleshooting
-
-### Build Issues
-- Ensure compiler is installed
-- Check file paths and permissions
-- Verify Make installation
-- Review compiler error messages
-
-### Runtime Issues
-- Check input data validity
-- Verify file accessibility
-- Ensure sufficient memory
-- Review output format
-
-### Performance Issues
-- Check compiler optimization flags
-- Profile hot code paths
-- Review algorithm complexity
-- Consider input size
-
-## Future Improvements
-
-Potential enhancements:
-- Additional optimization opportunities
-- Extended functionality
-- Platform-specific optimizations
-- Performance profiling
-
-## References
-
-For technical background:
-- Algorithm textbooks
-- Computer science references
-- Language documentation
-- Online educational resources
-
----
-
-*Project implementing practical algorithms and data structures in C/C++*
+These instructions cover building and running the project for different platforms using the provided Makefiles.
